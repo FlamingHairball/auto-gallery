@@ -1,6 +1,28 @@
 <html>
 <head>
-	<script src="index.js"></script>
+	<script type="text/javascript" src="https://cdn.rawgit.com/janl/mustache.js/master/mustache.js" type="text/javascript"></script>
+	<script src="manifest.js"></script>
+
+	<script id="bodyTemplate" type="text/x-handlebars-template">
+		<h1>Hello</h1>
+		<ul>
+			{{#images}}
+				<li>
+				<img src="{{img_path}}"/>
+				<p>{{meta.lang}}</p>
+				</li>
+			{{/images}}
+		</ul>
+	</script>
+
+	<script>
+		window.addEventListener('load', function() {
+			console.log('hello!')
+			var template = document.getElementById("bodyTemplate").innerHTML 
+			console.log(template)
+			document.body.innerHTML = Mustache.render(template, { images: images })
+		})
+	</script>
 </head>
 
 <body>
